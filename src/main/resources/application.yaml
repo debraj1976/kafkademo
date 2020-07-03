@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          autoCreateTopics: true
+          #add all kafka brokers below comma separated
+          brokers: localhost:9092
+          #comma separated zookeeper servers
+          zkNodes: localhost:2181
+      bindings:
+        #publisherChannel:
+          #destination: myTopic
+          #contentType: application/json
+          #producer:
+            #partitionCount: 1
+        consumerChannel:
+          destination: myTopic
+          contentType: application/json
+          group: my-consumer-group
+          consumer:
+            headerMode: embeddedHeaders
+    enabled: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.memorynotfound: INFO
+
